@@ -45,9 +45,12 @@
 
 ; ── Named parameters ───────────────────────────────────────────
 (named_param name: (identifier) @property)
-(named_param value: (string) @string)
-(named_param value: (number) @number)
-(named_param value: (boolean_literal) @boolean)
+(named_param value: (literal (string)) @string)
+(named_param value: (literal (number)) @number)
+(named_param value: (literal (boolean_literal)) @boolean)
+(named_param value: (literal (ip_address)) @constant)
+(named_param value: (literal (ip_prefix)) @constant)
+(named_param value: (identifier) @constant)
 
 ; ── Variables ──────────────────────────────────────────────────
 (variable_reference

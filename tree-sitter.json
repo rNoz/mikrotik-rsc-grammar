@@ -1,6 +1,7 @@
 {
   "grammars": [
     {
+      "name": "rsc",
       "scope": "source.rsc",
       "file-types": ["rsc"],
       "highlights": "queries/highlights.scm",
@@ -17,7 +18,7 @@
       }
     ],
     "links": {
-      "repository": "https://github.com/fravic/mikrotik-rsc-grammar"
+      "repository": "https://github.com/keiras94/mikrotik-rsc-grammar"
     }
   }
 }
