@@ -1,6 +1,7 @@
 {
   "grammars": [
     {
+      "name": "rsc",
       "scope": "source.rsc",
       "file-types": ["rsc"],
       "highlights": "queries/highlights.scm",
@@ -13,11 +14,11 @@
     "description": "Tree-sitter grammar for MikroTik RouterOS Script (RSC) language",
     "authors": [
       {
-        "name": "Francisco"
+        "name": "keiras94"
       }
     ],
     "links": {
-      "repository": "https://github.com/fravic/mikrotik-rsc-grammar"
+      "repository": "https://github.com/keiras94/mikrotik-rsc-grammar"
     }
   }
 }
