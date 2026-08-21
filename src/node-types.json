@@ -36,10 +36,6 @@
           "named": true
         },
         {
-          "type": "operator",
-          "named": true
-        },
-        {
           "type": "subexpression",
           "named": true
         },
@@ -86,7 +82,22 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "arrow",
+          "named": true
+        }
+      ]
     }
+  },
+  {
+    "type": "assignment",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "block",
@@ -130,10 +141,6 @@
         },
         {
           "type": "menu_command",
-          "named": true
-        },
-        {
-          "type": "operator",
           "named": true
         },
         {
@@ -193,10 +200,6 @@
         },
         {
           "type": "menu_command",
-          "named": true
-        },
-        {
-          "type": "operator",
           "named": true
         },
         {
@@ -277,10 +280,6 @@
           "named": true
         },
         {
-          "type": "operator",
-          "named": true
-        },
-        {
           "type": "subexpression",
           "named": true
         },
@@ -332,10 +331,6 @@
         },
         {
           "type": "literal",
-          "named": true
-        },
-        {
-          "type": "operator",
           "named": true
         },
         {
@@ -399,10 +394,6 @@
         },
         {
           "type": "named_param",
-          "named": true
-        },
-        {
-          "type": "operator",
           "named": true
         },
         {
@@ -471,11 +462,11 @@
     }
   },
   {
-    "type": "menu_command",
+    "type": "menu_argument",
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": true,
       "types": [
         {
@@ -503,19 +494,7 @@
           "named": true
         },
         {
-          "type": "menu_path",
-          "named": true
-        },
-        {
-          "type": "menu_prefix",
-          "named": true
-        },
-        {
           "type": "named_param",
-          "named": true
-        },
-        {
-          "type": "operator",
           "named": true
         },
         {
@@ -524,6 +503,29 @@
         },
         {
           "type": "variable_reference",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "menu_command",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "menu_argument",
+          "named": true
+        },
+        {
+          "type": "menu_path",
+          "named": true
+        },
+        {
+          "type": "menu_prefix",
           "named": true
         }
       ]
@@ -592,10 +594,6 @@
             "named": true
           },
           {
-            "type": "operator",
-            "named": true
-          },
-          {
             "type": "subexpression",
             "named": true
           },
@@ -605,6 +603,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "assignment",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -653,10 +661,6 @@
           "named": true
         },
         {
-          "type": "operator",
-          "named": true
-        },
-        {
           "type": "parent_navigation",
           "named": true
         },
@@ -685,6 +689,10 @@
         },
         {
           "type": "array_access",
+          "named": true
+        },
+        {
+          "type": "assignment",
           "named": true
         },
         {
@@ -765,10 +773,6 @@
     "named": false
   },
   {
-    "type": "->",
-    "named": false
-  },
-  {
     "type": "/",
     "named": false
   },
@@ -791,6 +795,10 @@
   {
     "type": "]",
     "named": false
+  },
+  {
+    "type": "arrow",
+    "named": true
   },
   {
     "type": "boolean_literal",

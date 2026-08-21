@@ -9,10 +9,12 @@ Simple menu command — two levels
 (source_file
   (menu_command
     (menu_prefix)
-    (identifier)
-    (identifier)
-    (identifier)))
-
+    (menu_argument
+      (identifier))
+    (menu_argument
+      (identifier))
+    (menu_argument
+      (identifier))))
 
 ==========
 Menu command — one level
@@ -25,8 +27,8 @@ Menu command — one level
 (source_file
   (menu_command
     (menu_prefix)
-    (identifier)))
-
+    (menu_argument
+      (identifier))))
 
 ==========
 Menu command — multiple levels
@@ -39,11 +41,14 @@ Menu command — multiple levels
 (source_file
   (menu_command
     (menu_prefix)
-    (identifier)
-    (identifier)
-    (identifier)
-    (identifier)))
-
+    (menu_argument
+      (identifier))
+    (menu_argument
+      (identifier))
+    (menu_argument
+      (identifier))
+    (menu_argument
+      (identifier))))
 
 ==========
 Menu command — five levels
@@ -56,15 +61,21 @@ Menu command — five levels
 (source_file
   (menu_command
     (menu_prefix)
-    (identifier)
-    (identifier)
-    (identifier)
-    (identifier)
-    (identifier)
-    (operator)
-    (identifier)
-    (identifier)
-    (operator)
-    (identifier)))
-
-
+    (menu_argument
+      (identifier))
+    (menu_argument
+      (identifier))
+    (menu_argument
+      (identifier))
+    (menu_argument
+      (identifier))
+    (menu_argument
+      (named_param
+        (identifier)
+        (assignment)
+        (identifier)))
+    (menu_argument
+      (named_param
+        (identifier)
+        (assignment)
+        (identifier)))))

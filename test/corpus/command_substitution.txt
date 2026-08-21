@@ -13,7 +13,6 @@ Simple command substitution
     (command_substitution
       (identifier))))
 
-
 ==========
 Command substitution with params
 ==========
@@ -29,14 +28,18 @@ Command substitution with params
     (command_substitution
       (menu_command
         (menu_prefix)
-        (identifier)
-        (identifier)
-        (identifier)
-        (identifier)
-        (operator)
-        (literal
-          (ip_address))))))
-
+        (menu_argument
+          (identifier))
+        (menu_argument
+          (identifier))
+        (menu_argument
+          (identifier))
+        (menu_argument
+          (named_param
+            (identifier)
+            (assignment)
+            (literal
+              (ip_address))))))))
 
 ==========
 Command substitution :len
@@ -57,7 +60,6 @@ Command substitution :len
         (literal
           (string))))))
 
-
 ==========
 Command substitution :resolve
 ==========
@@ -76,11 +78,11 @@ Command substitution :resolve
           (identifier))
         (named_param
           name: (identifier)
+          (assignment)
           value: (literal
             (string)))
         (named_param
           name: (identifier)
+          (assignment)
           value: (literal
             (ip_address)))))))
-
-

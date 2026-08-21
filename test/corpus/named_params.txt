@@ -9,16 +9,21 @@ Named param in menu command
 (source_file
   (menu_command
     (menu_prefix)
-    (identifier)
-    (identifier)
-    (identifier)
-    (identifier)
-    (operator)
-    (literal
-      (ip_address))
-    (identifier)
-    (operator)
-    (literal
-      (number))))
-
-
+    (menu_argument
+      (identifier))
+    (menu_argument
+      (identifier))
+    (menu_argument
+      (identifier))
+    (menu_argument
+      (named_param
+        (identifier)
+        (assignment)
+        (literal
+          (ip_address))))
+    (menu_argument
+      (named_param
+        (identifier)
+        (assignment)
+        (literal
+          (number))))))

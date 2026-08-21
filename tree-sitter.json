@@ -1,6 +1,7 @@
 {
   "grammars": [
     {
+      "name": "rsc",
       "scope": "source.rsc",
       "file-types": ["rsc"],
       "highlights": "queries/highlights.scm",

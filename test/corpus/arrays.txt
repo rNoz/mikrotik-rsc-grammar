@@ -18,7 +18,6 @@ Simple array
       (literal
         (number)))))
 
-
 ==========
 Array with named elements
 ==========
@@ -34,17 +33,19 @@ Array with named elements
     (array
       (named_param
         name: (identifier)
+        (assignment)
         value: (literal
           (number)))
       (named_param
         name: (identifier)
+        (assignment)
         value: (literal
           (number)))
       (named_param
         name: (identifier)
+        (assignment)
         value: (literal
           (number))))))
-
 
 ==========
 Array with trailing semicolon
@@ -64,7 +65,6 @@ Array with trailing semicolon
       (literal
         (number)))))
 
-
 ==========
 Empty array
 ==========
@@ -78,7 +78,6 @@ Empty array
     (global_command_name
       (identifier))
     (array)))
-
 
 ==========
 Mixed array
@@ -97,8 +96,7 @@ Mixed array
         (number))
       (named_param
         name: (identifier)
+        (assignment)
         value: (identifier))
       (literal
         (number)))))
-
-

@@ -17,7 +17,8 @@
 ; Bare identifiers inside a menu command that are not part of the path
 ; (typically action verbs like add/print/set).
 (menu_command
-  (identifier) @function)
+  (menu_argument
+    (identifier) @function))
 
 ; ── Named parameters — property=value ──────────────────────────
 (named_param
@@ -35,7 +36,7 @@
 (named_param
   value: (literal (boolean_literal)) @boolean)
 
-(named_param "=" @operator)
+(named_param (assignment) @operator)
 
 ; ── Global commands (:put, :local, :for, etc.) ──────────────────
 (global_command_name) @keyword

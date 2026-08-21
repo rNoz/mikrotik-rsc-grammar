@@ -57,9 +57,14 @@ module.exports = grammar({
       prec(2, seq(
         $.menu_prefix,
         optional($.menu_path),
-        repeat($.named_param),
-        repeat($._value),
+        repeat($.menu_argument),
       )),
+
+    menu_argument: ($) =>
+      choice(
+        prec(1, $.named_param),
+        $._value,
+      ),
 
     menu_prefix: ($) => "/",
     menu_path: ($) =>
@@ -94,7 +99,7 @@ module.exports = grammar({
     named_param: ($) =>
       prec(1, seq(
         field("name", $.identifier),
-        "=",
+        $.assignment,
         field("value", $._value),
       )),
 
@@ -119,7 +124,6 @@ module.exports = grammar({
         $.array_access,
         $.function_call,
         $.identifier,
-        $.operator,
       ),
 
     // ── Literals ─────────────────────────────────────────────
@@ -133,14 +137,20 @@ module.exports = grammar({
         $.ip_prefix,
       ),
 
+    // ── Assignment (separate token so key=value can bind as named_param)
+    assignment: ($) => token("="),
+
+    // ── Arrow for array access (separate token to avoid operator conflict)
+    arrow: ($) => token("->"),
+
     // ── Operators (token only, not structured) ──────────────
     operator: ($) =>
       token(choice(
         "&&", "||",
-        "!=", "<=", ">=", "=", "<", ">",
+        "!=", "<=", ">=", "<", ">",
         "+", "-", "*", "/", "%",
         "&", "|", "^", "<<", ">>",
-        "~", ".", ",", "!", "->",
+        "~", ".", ",", "!",
       )),
 
     // ── Variable references ─────────────────────────────────
@@ -150,7 +160,7 @@ module.exports = grammar({
     array_access: ($) =>
       seq(
         field("array", choice($.variable_reference, $.identifier)),
-        "->",
+        $.arrow,
         field("key", choice($.string, $.identifier, $.number)),
       ),
 
@@ -165,9 +175,9 @@ module.exports = grammar({
     subexpression: ($) =>
       seq(
         "(",
+        repeat(choice($.operator, $.assignment)),
         $._value,
-        repeat($.operator),
-        repeat($._value),
+        repeat(seq(choice($.operator, $.assignment, $.identifier), $._value)),
         ")",
       ),
 

@@ -9,6 +9,9 @@ Single menu command
 (source_file
   (menu_command
     (menu_prefix)
-    (identifier)
-    (identifier)
-    (identifier)))
+    (menu_argument
+      (identifier))
+    (menu_argument
+      (identifier))
+    (menu_argument
+      (identifier))))
