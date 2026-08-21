@@ -1,27 +1,46 @@
+; ── MikroTik RouterOS Script — highlights ──────────────────────
+; Query file must match the node names produced by the grammar at
+; https://github.com/keiras94/mikrotik-rsc-grammar (rev 318e73ab).
+
 ; ── Comments ─────────────────────────────────────────────────────
 (comment) @comment
 
+; ── Menu prefix "/" ──────────────────────────────────────────────
+(menu_prefix) @punctuation.special
+
 ; ── Menu paths ──────────────────────────────────────────────────
-; Menu prefix "/" 
-(menu_prefix) @string.special.path
-
-; Identifiers that are part of a menu path (first identifier after prefix)
+; Root + segments in /ip/route/add ...
 (menu_command
-  (identifier) @string.special.path
-  (#not-has-parent? @string.special.path named_param))
+  (menu_path
+    (identifier) @string.special.path))
 
-; Menu path segments — all identifiers in menu_command before any named_param
+; Bare identifiers inside a menu command that are not part of the path
+; (typically action verbs like add/print/set).
 (menu_command
-  .
-  (menu_prefix)
-  (identifier) @string.special.path
-  .
-  (identifier) @string.special.path)
+  (identifier) @function)
 
-; ── Global commands (:put, :local, :if, :for, etc.) ────────────
+; ── Named parameters — property=value ──────────────────────────
+(named_param
+  name: (identifier) @property)
+
+(named_param
+  value: (identifier) @constant)
+
+(named_param
+  value: (literal (string)) @string)
+
+(named_param
+  value: (literal (number)) @number)
+
+(named_param
+  value: (literal (boolean_literal)) @boolean)
+
+(named_param "=" @operator)
+
+; ── Global commands (:put, :local, :for, etc.) ──────────────────
 (global_command_name) @keyword
 
-; Control keywords
+; Control flow keywords
 (global_command
   (global_command_name) @keyword.control
   (#match? @keyword.control ":(do|while|if|for|foreach|return|error|onerror|retry)$"))
@@ -37,19 +56,17 @@
 "while" @keyword.control
 "in" @keyword
 
-; ── Booleans ───────────────────────────────────────────────────
+; ── Booleans ────────────────────────────────────────────────────
 (boolean_literal) @boolean
 
-; ── Nil ────────────────────────────────────────────────────────
+; ── Nil ─────────────────────────────────────────────────────────
 (nil_literal) @constant.builtin
 
-; ── Named parameters ───────────────────────────────────────────
-(named_param name: (identifier) @property)
-(named_param value: (string) @string)
-(named_param value: (number) @number)
-(named_param value: (boolean_literal) @boolean)
+; ── Function calls ──────────────────────────────────────────────
+(function_call
+  (identifier) @function.call)
 
-; ── Variables ──────────────────────────────────────────────────
+; ── Variables ───────────────────────────────────────────────────
 (variable_reference
   "$" @punctuation.special
   (identifier) @variable)
@@ -57,14 +74,14 @@
 ; ── Strings ────────────────────────────────────────────────────
 (string) @string
 
-; ── Numbers ────────────────────────────────────────────────────
+; ── Numbers ─────────────────────────────────────────────────────
 (number) @number
 
-; ── IP addresses ───────────────────────────────────────────────
+; ── IP addresses / prefixes ─────────────────────────────────────
 (ip_address) @constant
 (ip_prefix) @constant
 
-; ── Operators ──────────────────────────────────────────────────
+; ── Operators ───────────────────────────────────────────────────
 (operator) @operator
 
 ; ── Brackets and punctuation ───────────────────────────────────
@@ -72,25 +89,31 @@
   "(" ")" "[" "]" "{" "}"
 ] @punctuation.bracket
 
-; ── Statement separator ───────────────────────────────────────
+; ── Statement separator ────────────────────────────────────────
 ";" @punctuation.delimiter
 
-; ── Line continuation ─────────────────────────────────────────
+; ── Line continuation ──────────────────────────────────────────
 (line_continuation) @punctuation.special
 
-; ── Parent navigation ──────────────────────────────────────────
+; ── Parent navigation ───────────────────────────────────────────
 (parent_navigation) @string.special.path
 
-; ── Command substitution brackets ──────────────────────────────
+; ── Command substitution ───────────────────────────────────────
 (command_substitution
   "[" @punctuation.bracket
   "]" @punctuation.bracket)
 
+; ── Subexpressions ──────────────────────────────────────────────
 (subexpression
   "(" @punctuation.bracket
   ")" @punctuation.bracket)
 
 ; ── Block delimiters ───────────────────────────────────────────
 (block
+  "{" @punctuation.bracket
+  "}" @punctuation.bracket)
+
+; ── Arrays ─────────────────────────────────────────────────────
+(array
   "{" @punctuation.bracket
   "}" @punctuation.bracket)
