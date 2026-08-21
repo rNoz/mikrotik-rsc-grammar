@@ -1,6 +1,6 @@
 ; ── MikroTik RouterOS Script — highlights ──────────────────────
 ; Query file must match the node names produced by the grammar at
-; https://github.com/keiras94/mikrotik-rsc-grammar (rev 318e73ab).
+; https://github.com/rNoz/mikrotik-rsc-grammar (rev 1695b06).
 
 ; ── Comments ─────────────────────────────────────────────────────
 (comment) @comment
